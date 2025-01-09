@@ -1,3 +1,10 @@
+package main;
+
+import typetask.Epic;
+import typetask.Subtask;
+import typetask.Task;
+import typetask.Status;
+
 public class Main {
 
     public static void main(String[] args) {

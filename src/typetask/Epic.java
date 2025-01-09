@@ -1,6 +1,9 @@
-import java.util.ArrayList;
+package typetask;
 
-public class Epic extends Task{
+import java.util.ArrayList;
+import java.util.List;
+
+public class Epic extends Task {
     private final ArrayList<Subtask> subtasks;
 
     public Epic(String name, String description) {
@@ -8,12 +11,13 @@ public class Epic extends Task{
         subtasks = new ArrayList<>();
     }
 
-    public ArrayList<Subtask> getSubtaks() {
+    public ArrayList<Subtask> getSubtasks() {
         return subtasks;
     }
 
     public void addSubtasks(Subtask subtask) {
-        subtasks.add(subtask);
+            subtasks.add(subtask);
+
     }
 
     public void deleteSubtasks (Subtask subtask) {
@@ -46,13 +50,22 @@ public class Epic extends Task{
          }
     }
 
+    public List<Integer> getIdSubtasks(){
+        List<Integer> ListIdSubtasks = new ArrayList<>();
+            for (Subtask subtask : subtasks) {
+                ListIdSubtasks.add(subtask.getId());
+            }
+
+        return ListIdSubtasks;
+    }
+
 
     @Override
     public String toString() {
         return "Epic{" +
             "id = " + getId() + ", name = " + getName() + ", description = " +
                     getDescription() + ", status = " + getStatus() +
-                    ", subtasks=" + subtasks +
+                    ", Id_subtasks =" + getIdSubtasks()+
                     '}';
     }
 }
