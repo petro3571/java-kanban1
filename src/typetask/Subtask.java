@@ -1,19 +1,15 @@
 package typetask;
 
 public class Subtask extends Task {
-    private int epicId;
+    private Epic epic;
 
-    public Subtask (Status status, String description, String name, int epicId) {
+    public Subtask (Status status, String description, String name, Epic epic) {
         super(status,description,name);
-        this.epicId = epicId;
+        this.epic = epic;
     }
 
-    public int getEpicId() {
-        return epicId;
-    }
-
-    public void setEpicId(int epicId) {
-        this.epicId = epicId;
+    public Epic getEpic() {
+        return epic;
     }
 
     @Override
@@ -21,7 +17,6 @@ public class Subtask extends Task {
         return "Subtask{" +
                 "id = " + getId() + ", name = " + getName() + ", description = " +
                 getDescription() + ", status = " + getStatus() +
-                ", epicId=" + epicId +
                 '}';
     }
 }

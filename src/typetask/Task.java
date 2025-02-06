@@ -12,6 +12,17 @@ public class Task {
         this.name = name;
     }
 
+    private Task(int id, Status status, String description, String name) {
+        this.id = id;
+        this.status = status;
+        this.description = description;
+        this.name = name;
+    }
+
+    public Task getSnapshot() {
+        return new Task(this.getId(), this.getStatus(), this.getDescription(), this.getName());
+    }
+
     public String getName() {
         return name;
     }
@@ -53,6 +64,4 @@ public class Task {
                 ", id=" + id +
                 '}';
     }
-
-
 }
