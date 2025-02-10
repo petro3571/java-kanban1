@@ -49,10 +49,8 @@ public class Main {
         subtask2.setStatus(Status.DONE);
         taskManager.updateSubtask(subtask2);
 
-
         System.out.println("Обновленный эпик " + taskManager.getEpicByIndex(epic1.getId()));
         System.out.println();
-
 
         taskManager.deleteTaskByIndex(task2.getId());
         taskManager.deleteEpicByIndex(epic2.getId());
