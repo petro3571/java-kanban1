@@ -4,7 +4,7 @@ import typetask.Task;
 
 import java.util.*;
 
-public class InMemoryHistoryManager implements HistoryManager{
+public class InMemoryHistoryManager implements HistoryManager {
     private final Map<Integer, Node<Task>> newHashMap = new HashMap<>();
 
     private Node<Task> head;
@@ -13,7 +13,7 @@ public class InMemoryHistoryManager implements HistoryManager{
 
     @Override
     public void addTask(Task task) {
-        if(task != null) {
+        if (task != null) {
             remove(task.getId());
             linkLast(task);
         }
@@ -25,11 +25,11 @@ public class InMemoryHistoryManager implements HistoryManager{
     }
 
     @Override
-    public void remove (int id) {
+    public void remove(int id) {
         removeNode(newHashMap.get(id));
     }
 
-    public void linkLast (Task task) {
+    public void linkLast(Task task) {
         final Node<Task> oldTail = tail;
         final Node<Task> newNode = new Node<Task>(oldTail, task, null);
         tail = newNode;
@@ -70,16 +70,16 @@ public class InMemoryHistoryManager implements HistoryManager{
             }
         }
     }
+}
 
-    class Node<Task> {
-        public Task data;
-        public Node<Task> next;
-        public Node<Task> prev;
+class Node<T> {
+    public T data;
+    public Node<T> next;
+    public Node<T> prev;
 
-        public Node(Node<Task> prev, Task data, Node<Task> next) {
-            this.data = data;
-            this.next = next;
-            this.prev = prev;
-        }
+    public Node(Node<T> prev, T data, Node<T> next) {
+        this.data = data;
+        this.next = next;
+        this.prev = prev;
     }
 }
