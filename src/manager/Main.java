@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         TaskManager taskManager =  Managers.getDefaultTaskManager();
 
-        Task task1 = new Task(Status.NEW, "Купить продукты" , "Лента");
+        Task task1 = new Task(Status.NEW, "Купить продукты", "Лента");
         taskManager.addTask(task1);
 
         Task taskFirst = taskManager.getTaskByIndex(task1.getId());
@@ -60,6 +60,7 @@ public class Main {
         System.out.println("Эпики после удаления " + taskManager.getAllEpics());
         System.out.println();
     }
+    
     private static void printAllTasks(TaskManager manager) {
         System.out.println("Задачи:");
         for (Task task : manager.getAllTasks()) {
