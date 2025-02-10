@@ -60,6 +60,7 @@ public class Main {
         System.out.println("Эпики после удаления " + taskManager.getAllEpics());
         System.out.println();
     }
+
     private static void printAllTasks(TaskManager manager) {
         System.out.println("Задачи:");
         for (Task task : manager.getAllTasks()) {
