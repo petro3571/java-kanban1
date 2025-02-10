@@ -148,7 +148,7 @@ class InMemoryTaskManagerTest {
 
         @Test
         void shouldBeDeletedSubtaskFromEpicInHistory() {
-            Epic epic1 = new Epic("Новый год", "Подготовка к нг");
+            Epic epic1 = new Epic("Новый год 2025", "Подготовка к нг");
             taskManager.addEpic(epic1);
 
             Subtask subtask1 = new Subtask(Status.NEW, "Выбрать и купить салют", "Салют", epic1);
