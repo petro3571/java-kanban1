@@ -45,11 +45,14 @@ public class Main {
 
         subtask1.setStatus(Status.DONE);
         taskManager.updateSubtask(subtask1);
+
         subtask2.setStatus(Status.DONE);
         taskManager.updateSubtask(subtask2);
 
+
         System.out.println("Обновленный эпик " + taskManager.getEpicByIndex(epic1.getId()));
         System.out.println();
+
 
         taskManager.deleteTaskByIndex(task2.getId());
         taskManager.deleteEpicByIndex(epic2.getId());
@@ -58,7 +61,6 @@ public class Main {
         System.out.println();
         System.out.println("Эпики после удаления " + taskManager.getAllEpics());
         System.out.println();
-
     }
     private static void printAllTasks(TaskManager manager) {
         System.out.println("Задачи:");
