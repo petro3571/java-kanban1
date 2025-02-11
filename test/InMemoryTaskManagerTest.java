@@ -79,12 +79,7 @@ class InMemoryTaskManagerTest {
             taskManager.updateTask(taskSecond);
 
             Task task3 = taskManager.getTaskByIndex(taskSecond.getId());
-
-            assertEquals(taskManager.getHistory().get(0).getName(), taskManager.getHistory().get(1).getName());
-            assertEquals(taskManager.getHistory().get(0).getDescription(), taskManager.getHistory().get(1).getDescription());
-            assertEquals(taskManager.getHistory().get(0).getId(), taskManager.getHistory().get(1).getId());
-            assertNotEquals(taskManager.getHistory().get(0).getStatus(), taskManager.getHistory().get(1).getStatus());
-            assertEquals(Task.class , taskManager.getHistory().get(0).getClass());
+            assertEquals(1, taskManager.getHistory().size());
         }
 
         @Test
@@ -114,8 +109,66 @@ class InMemoryTaskManagerTest {
 
             System.out.println("new Epic " + taskManager.getEpicByIndex(epic1.getId()));
 
-            boolean isDifferentType = taskManager.getHistory().get(2).getName().equals(epic1.getName());
+            boolean isDifferentType = taskManager.getHistory().get(0).getName().equals(epic1.getName());
 
-            assertTrue(isDifferentType);
+            assertFalse(isDifferentType);
+        }
+
+        @Test
+        void shouldBeDeletedEpicInHistory() {
+            Task task1 = new Task(Status.NEW, "description1" , "task1");
+            taskManager.addTask(task1);
+
+            Task taskFirst = taskManager.getTaskByIndex(task1.getId());
+            taskFirst.setStatus(Status.IN_PROGRESS);
+            taskManager.updateTask(taskFirst);
+
+            Task taskSecond = taskManager.getTaskByIndex(taskFirst.getId());
+
+            Epic epic1 = new Epic("Epic1", "description1");
+            taskManager.addEpic(epic1);
+
+            Subtask subtask1 = new Subtask(Status.NEW, "description1", "Subtask1", epic1);
+            taskManager.addSubtask(subtask1);
+
+            Subtask subtask2 = new Subtask(Status.NEW, "description2", "subtask2", epic1);
+            taskManager.addSubtask(subtask2);
+
+            subtask1.setStatus(Status.DONE);
+            taskManager.updateSubtask(subtask1);
+            subtask2.setStatus(Status.DONE);
+            taskManager.updateSubtask(subtask2);
+
+            System.out.println("new Epic " + taskManager.getEpicByIndex(epic1.getId()));
+            taskManager.deleteEpicByIndex(epic1.getId());
+
+            assertEquals(1, taskManager.getHistory().size());
+            assertEquals(Task.class , taskManager.getHistory().get(0).getClass());
+        }
+
+        @Test
+        void shouldBeDeletedSubtaskFromEpicInHistory() {
+            Epic epic1 = new Epic("Новый год 2025", "Подготовка к нг");
+            taskManager.addEpic(epic1);
+
+            Subtask subtask1 = new Subtask(Status.NEW, "Выбрать и купить салют", "Салют", epic1);
+            taskManager.addSubtask(subtask1);
+
+            Subtask subtask2 = new Subtask(Status.NEW, "Пригласить близких", "Обзвонить близких", epic1);
+            taskManager.addSubtask(subtask2);
+
+            subtask1.setStatus(Status.DONE);
+            taskManager.updateSubtask(subtask1);
+            System.out.println("Обновленный эпик " + taskManager.getSubtaskByIndex(subtask1.getId()));
+
+            subtask2.setStatus(Status.DONE);
+            taskManager.updateSubtask(subtask2);
+            System.out.println("Обновленный эпик " + taskManager.getSubtaskByIndex(subtask2.getId()));
+
+            System.out.println("Обновленный эпик " + taskManager.getEpicByIndex(epic1.getId()));
+
+            taskManager.deleteSubtaskByIndex(subtask1.getId());
+
+            assertEquals(2, taskManager.getHistory().size());
         }
     }
