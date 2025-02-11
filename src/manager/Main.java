@@ -23,7 +23,7 @@ public class Main {
 
         Task task3 = taskManager.getTaskByIndex(taskSecond.getId());
 
-        Task task2 = new Task(Status.NEW, "Полный бак", "Крайснефть");
+        Task task2 = new Task(Status.NEW, "Полный бак аи100", "Крайснефть");
         taskManager.addTask(task2);
 
         Epic epic1 = new Epic("Новый год", "Подготовка к нг");
