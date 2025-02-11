@@ -18,7 +18,7 @@ public class Main {
         taskManager.updateTask(taskFirst);
 
         Task taskSecond = taskManager.getTaskByIndex(taskFirst.getId());
-        taskSecond.setDescription("fwdfdsf");
+        taskSecond.setDescription("fwdfdsfw");
         taskManager.updateTask(taskSecond);
 
         Task task3 = taskManager.getTaskByIndex(taskSecond.getId());
